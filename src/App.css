@@ -1,8 +1,8 @@
 body{
-  background-color: rgb(39, 38, 39);
+  background-color: rgb(63, 62, 63);
 }
 .content {
-  row-gap: 30px;
+  row-gap: 50px;
   column-gap: 10px;
   margin: 20px;
   display: flex;
@@ -11,7 +11,7 @@ body{
 }
 
 .card {
-  background-color: black;
+  background-color: rgb(26, 24, 26);
   color: white;
   padding: 10px;
   border-radius: 5px;
@@ -21,16 +21,20 @@ body{
   /* text-align: center; */
    box-shadow: 1px 2px rgb(70, 58, 58);
    overflow: hidden;
+
+   border: 5px solid white;
 }
 .card img{
 
   object-fit: cover;
   width: 100%;
   height:400px;
+  margin-top: 30px;
+  border: 2px solid white;
   
 }
 .card:hover{
-  background-color: rgb(228, 165, 146);
+  background-color: rgb(39, 39, 32);
 }
 Button{
   width: 100%;
@@ -89,20 +93,22 @@ Button{
 
 
 .form{
-  margin: 0% 10%;
+  /* margin: 2% 5%; */
  text-align: center;
  width: 80%;
  padding: 20px;
  border-radius: 10px;
  background-color: rgb(229, 233, 243);
- box-shadow: 1px 2px gray;
+ border:4px solid black;
+ 
 }
 .form-labels{
   float:left;
   margin: 0% 10%;
   padding-bottom: 15px;
   font-size: small;
-  color: rgb(109, 33, 133);
+  /* color: rgb(109, 33, 133); */
+  color: gray;
 }
 .textbox{
   width: 80%;
@@ -110,3 +116,14 @@ Button{
   margin: 8px 5px;
   box-sizing: border-box;
 }
+
+@media(max-width:600px){
+  .form{
+    margin:2% 4% ;
+  }
+ }
+ @media(min-width:601px){
+   .form{
+     margin:2% 6% ;
+   }
+ }

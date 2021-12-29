@@ -3,24 +3,11 @@ import './App.css';
 import { useState} from 'react';
 
 import * as React from 'react';
-import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import Button from '@mui/material/Button';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import Tooltip from '@mui/material/Tooltip';
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -33,11 +20,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import { Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import { EditReceipe } from './EditReceipe';
+import { AddReceipe } from './AddReceipe';
+import { ShowReceipe } from './ShowReceipe';
 
 
 
@@ -431,34 +418,34 @@ const [receipelist,setreceipelist]=useState([
     vitamina:"4019",
     vitaminc:"2"
   },
-  {
-    name:"",
-    picturelink:"",
-    ingredients:[],
-    receipe:[],
-    videolink:"",
-    notes:[],
-    preptime:"",
-    cooktime:"",
-    soakingtime:"",
-    fermentationtime:"",
-    totaltime:"",
-    course:"",
-    cuisine:"",
-    servings:"",
-    calories:"",
-    carbohydrates:"",
-    protein:"",
-    fat:"",
-    sodium:"",
-    potassium:"",
-    fiber:"",
-    sugar:"",
-    calcium:"",
-    iron:"",
-    vitamina:"",
-    vitaminc:""
-  },
+  // {
+  //   name:"",
+  //   picturelink:"",
+  //   ingredients:[],
+  //   receipe:[],
+  //   videolink:"",
+  //   notes:[],
+  //   preptime:"",
+  //   cooktime:"",
+  //   soakingtime:"",
+  //   fermentationtime:"",
+  //   totaltime:"",
+  //   course:"",
+  //   cuisine:"",
+  //   servings:"",
+  //   calories:"",
+  //   carbohydrates:"",
+  //   protein:"",
+  //   fat:"",
+  //   sodium:"",
+  //   potassium:"",
+  //   fiber:"",
+  //   sugar:"",
+  //   calcium:"",
+  //   iron:"",
+  //   vitamina:"",
+  //   vitaminc:""
+  // },
 ])
 
 const [formvisible,setformvisible] = useState(false)
@@ -508,7 +495,7 @@ const handleChange = (event, newValue) => {
         {/* Button to add receipes */}
        <div style={{textAlign:"center"}}>
        <Tooltip title="add receipe">
-        <Fab  aria-label="Add receipe "  size="large"  color="secondary" onClick={()=>{
+        <Fab  aria-label="Add receipe "  size="large"  color="sec" onClick={()=>{
                 setformvisible(!formvisible)
               }} >
                   <AddIcon/>
@@ -587,58 +574,39 @@ const handleChange = (event, newValue) => {
                   <br></br>
                   <br></br>
 
-      <div className='content'>
-
-
-        {
-          //creating receipe card 
-          receipelist.map(({name,picturelink,ingredients,receipe,videolink,notes,preptime,cooktime,soakingtime,
-                  fermentationtime,totaltime,course,cuisine,servings,calories,carbohydrates,protein,fat,sodium,potassium,
-                    fiber,sugar,calcium,iron,vitamina,vitaminc},index) => (
-                      
-              
-
-                       <Receipe 
-                       name={name} setname={setname}
-                       picturelink={picturelink} setpicturelink={setpicturelink}
-                       ingredients={ingredients} setingredients={setingredients}
-                       receipe={receipe} setreceipe={setreceipe}
-                       videolink={videolink} setvideolink={setvideolink}
-                       notes={notes} setnotes={setnotes}
-                       preptime={preptime} setpreptime={setpreptime}
-                       cooktime={cooktime} setcooktime={setcooktime}
-                       soakingtime={soakingtime} setsoakingtime={setsoakingtime}
-                       fermentationtime={fermentationtime} setfermentationtime={setfermentationtime}
-                       totaltime={totaltime} settotaltime={settotaltime}
-                       course={course} setcourse={setcourse}
-                       cuisine={cuisine} setcuisine={setcuisine}
-                       servings={servings} setservings={setservings}
-                       calories={calories} setcalories={setcalories}
-                       carbohydrates={carbohydrates} setcarbohydrates={setcarbohydrates}
-                       protein={protein} setprotein={setprotein}
-                       fat={fat} setfat={setfat}
-                       sodium={sodium} setsodium={setsodium}
-                       potassium={potassium} setpotassium={setpotassium}
-                       fiber={fiber} setfiber={setfiber}
-                       sugar={sugar} setsugar={setsugar}
-                       calcium={calcium} setcalcium={setcalcium}
-                       iron={iron} setiron={setiron}
-                       vitamina={vitamina} setvitamina={setvitamina}
-                       vitaminc={vitaminc} setvitaminc={setvitaminc}
-
-                      receipelist={receipelist}
-                      setreceipelist={setreceipelist}
-
-                      index={index}
-
-                      setform2visible={setform2visible} form2visible={form2visible}
-
-                      editindex={editindex} seteditindex={seteditindex}
-                      />
-
-                    ))
-        }
-      </div>
+                <ShowReceipe receipelist={receipelist}
+                setname={setname}
+                setpicturelink={setpicturelink}
+                setingredients={setingredients}
+                setreceipe={setreceipe}
+                setvideolink={setvideolink}
+                setnotes={setnotes}
+                setpreptime={setpreptime}
+                setcooktime={setcooktime}
+                setsoakingtime={setsoakingtime}
+                setfermentationtime={setfermentationtime}
+                settotaltime={settotaltime}
+                setcourse={setcourse}
+                setcuisine={setcuisine}
+                setservings={setservings}
+                setcalories={setcalories}
+                setcarbohydrates={setcarbohydrates}
+                setprotein={setprotein}
+                setfat={setfat}
+                setsodium={setsodium}
+                setpotassium={setpotassium}
+                setfiber={setfiber}
+                setsugar={setsugar}
+                setcalcium={setcalcium}
+                setiron={setiron}
+                setvitamina={setvitamina}
+                setvitaminc={setvitaminc}
+                setreceipelist={setreceipelist}
+                setform2visible={setform2visible}
+                form2visible={form2visible}
+                editindex={editindex}
+                seteditindex={seteditindex}
+                />
    
     </div>
   );
@@ -646,851 +614,5 @@ const handleChange = (event, newValue) => {
 
 export default App;
 
-function AddReceipe({name,setname,picturelink,setpicturelink,ingredients,setingredients,receipe,setreceipe,
-  videolink,setvideolink,notes,setnotes,preptime,setpreptime,cooktime,setcooktime,soakingtime,setsoakingtime,
-  fermentationtime,setfermentationtime,totaltime,settotaltime,course,setcourse
-  ,cuisine,setcuisine,servings,setservings,calories,setcalories,carbohydrates,setcarbohydrates,protein,setprotein,
-  fat,setfat,sodium,setsodium,potassium,setpotassium, fiber,setfiber,sugar,setsugar,calcium,setcalcium,
-  iron,setiron,vitamina,setvitamina,vitaminc,setvitaminc,receipelist,setreceipelist,formvisible,formstyle,setformvisible}){
 
-    //Form to get data of receipes
-  return(
-    <div className='form' style={formstyle}>
-      <div>
-        <TextField id="filled-basic"  className="textbox" label="Dish Name" variant="filled" required
-                onChange={(event)=>setname(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Dish picture link" variant="filled" 
-                  onChange={(event)=>setpicturelink(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Ingredients" variant="filled" 
-                  onChange={(event)=>setingredients(event.target.value)} />
-                  <div className='form-labels'>Enter all ingredients and quantity separated by comma (,) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Instructions / steps to do" variant="filled" 
-                  onChange={(event)=>setreceipe(event.target.value)} />
-                  <div className='form-labels'>Enter all steps clearly separated by fullstop (.) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Notes / points to remember" variant="filled" 
-                  onChange={(event)=>setnotes(event.target.value)} />
-                  <div className='form-labels'>Enter all points clearly separated by fullstop (.) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Video link" variant="filled" 
-                  onChange={(event)=>setvideolink(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Prep time" variant="filled" 
-                  onChange={(event)=>setpreptime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:5 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="cooking time needed" variant="filled" 
-                  onChange={(event)=>setcooktime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:15 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="soaking time needed" variant="filled" 
-                  onChange={(event)=>setsoakingtime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:15 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="fermentation time needed" variant="filled" 
-                  onChange={(event)=>setfermentationtime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:4 hrs</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Total time needed" variant="filled" 
-                  onChange={(event)=>settotaltime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:50 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="course type" variant="filled" 
-                  onChange={(event)=>setcourse(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Cuisine" variant="filled" 
-                  onChange={(event)=>setcuisine(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="servings" variant="filled" 
-                  onChange={(event)=>setservings(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Calories" variant="filled" 
-                  onChange={(event)=>setcalories(event.target.value)} />
-          <div className='form-labels'>Enter amount in KCal (Kilo Calories). Example:100</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Carbohydrates" variant="filled" 
-                  onChange={(event)=>setcarbohydrates(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Protein" variant="filled" 
-                  onChange={(event)=>setprotein(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Fat" variant="filled" 
-                  onChange={(event)=>setfat(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Sodium" variant="filled" 
-                  onChange={(event)=>setsodium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Potassium" variant="filled" 
-                  onChange={(event)=>setpotassium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Fiber" variant="filled" 
-                  onChange={(event)=>setfiber(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Sugar" variant="filled" 
-                  onChange={(event)=>setsugar(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Calcium" variant="filled" 
-                  onChange={(event)=>setcalcium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Iron" variant="filled" 
-                  onChange={(event)=>setiron(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Vitamin A" variant="filled" 
-                  onChange={(event)=>setvitamina(event.target.value)} />
-                  <div className='form-labels'>Enter amount in IU (International Unit). Example:1516</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Vitamin C" variant="filled" 
-                  onChange={(event)=>setvitaminc(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br>
-      <br></br>
-      <Button color='secondary' variant='contained' className='textbox' onClick={()=>{
-       
-       //adding new receipe object to list
-        setreceipelist([...receipelist,{
-          name:name.toString().trim().toUpperCase(),
-          picturelink:picturelink,
-          ingredients:(ingredients.toString().trim().length>0)?ingredients.toString().split(","):["NA"],
-          receipe:(receipe.toString().trim().length>0)?receipe.toString().split("."):["NA"],
-          videolink:videolink,
-          notes:(notes.toString().trim().length>0)?notes.toString().split("."):["NA"],
-          preptime:preptime,
-          cooktime:cooktime,
-          soakingtime:soakingtime,
-          fermentationtime:fermentationtime,
-          totaltime:totaltime,
-          course:course,
-          cuisine:cuisine,
-          servings:servings,
-          calories:calories,
-          carbohydrates:carbohydrates,
-          protein:protein,
-          fat:fat,
-          sodium:sodium,
-          potassium:potassium,
-          fiber:fiber,
-          sugar:sugar,
-          calcium:calcium,
-          iron:iron,
-          vitamina:vitamina,
-          vitaminc:vitaminc
-        }]);
-
-        //after adding setting teh fields to empty values
-        setname("");
-        setpicturelink("")
-        setingredients("")
-        setreceipe("")
-        setvideolink("")
-        setnotes("")
-        setpreptime("")
-        setcooktime("")
-        setsoakingtime("")
-        setfermentationtime("")
-        settotaltime("")
-        setcourse("")
-        setcuisine("")
-        setservings("")
-        setcalories("")
-        setcarbohydrates("")
-        setprotein("")
-        setfat("")
-        setsodium("")
-        setpotassium("")
-        setfiber("")
-        setsugar("")
-        setcalcium("")
-        setiron("")
-        setvitamina("")
-        setvitaminc("")
-
-        setformvisible(!(formvisible))
-      }}>
-          ADD NEW RECEIPE
-      </Button>
-      <br></br>
-    </div>
-    
-  )
-}
-
-
-function EditReceipe({name,setname,picturelink,setpicturelink,ingredients,setingredients,receipe,setreceipe,
-  videolink,setvideolink,notes,setnotes,preptime,setpreptime,cooktime,setcooktime,soakingtime,setsoakingtime,
-  fermentationtime,setfermentationtime,totaltime,settotaltime,course,setcourse
-  ,cuisine,setcuisine,servings,setservings,calories,setcalories,carbohydrates,setcarbohydrates,protein,setprotein,
-  fat,setfat,sodium,setsodium,potassium,setpotassium, fiber,setfiber,sugar,setsugar,calcium,setcalcium,
-  iron,setiron,vitamina,setvitamina,vitaminc,setvitaminc,receipelist,setreceipelist,
-  form2visible,form2style,setform2visible,editindex,seteditindex}){
-
-  const elekey = receipelist[editindex];
-  
-
-    //Form to get data of receipes
-  return(
-    <div className='form' style={form2style}>
-      <div>
-      <TextField id="filled-basic" className="textbox" label="Dish Name" variant="filled" 
-      value={name} onChange={(event) => setname(event.target.value)}/>
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Dish picture link" variant="filled" 
-              value={picturelink}
-                  onChange={(event)=>setpicturelink(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Ingredients" variant="filled" 
-          value={ingredients}
-                  onChange={(event)=>setingredients(event.target.value)} />
-                  <div className='form-labels'>Enter all ingredients and quantity separated by comma (,) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Instructions / steps to do" variant="filled" 
-          value={receipe}
-                  onChange={(event)=>setreceipe(event.target.value)} />
-                  <div className='form-labels'>Enter all steps clearly separated by fullstop (.) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Notes / points to remember" variant="filled" 
-          value={notes}
-                  onChange={(event)=>setnotes(event.target.value)} />
-                  <div className='form-labels'>Enter all points clearly separated by fullstop (.) </div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Video link" variant="filled" 
-          value={videolink}
-                  onChange={(event)=>setvideolink(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Prep time" variant="filled" 
-          value={preptime}
-                  onChange={(event)=>setpreptime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:5 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="cooking time needed" variant="filled" 
-          value={cooktime}
-                  onChange={(event)=>setcooktime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:15 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="soaking time needed" variant="filled" 
-          value={soakingtime}
-                  onChange={(event)=>setsoakingtime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:15 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="fermentation time needed" variant="filled" 
-          value={fermentationtime}
-                  onChange={(event)=>setfermentationtime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:4 hrs</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Total time needed" variant="filled" 
-          value={totaltime}
-                  onChange={(event)=>settotaltime(event.target.value)} />
-                  <div className='form-labels'>Enter time with unit. Example:50 mins</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="course type" variant="filled" 
-          value={course}
-                  onChange={(event)=>setcourse(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Cuisine" variant="filled" 
-          value={cuisine}
-                  onChange={(event)=>setcuisine(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="servings" variant="filled" 
-          value={servings}
-                  onChange={(event)=>setservings(event.target.value)} />
-      </div>
-      <br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Calories" variant="filled" 
-          value={calories}
-                  onChange={(event)=>setcalories(event.target.value)} />
-          <div className='form-labels'>Enter amount in KCal (Kilo Calories). Example:100</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Carbohydrates" variant="filled" 
-          value={carbohydrates}
-                  onChange={(event)=>setcarbohydrates(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Protein" variant="filled" 
-          value={protein}
-                  onChange={(event)=>setprotein(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Fat" variant="filled" 
-          value={fat}
-                  onChange={(event)=>setfat(event.target.value)} />
-                  <div className='form-labels'>Enter amount in g (grams). Example:10</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Sodium" variant="filled" 
-          value={sodium}
-                  onChange={(event)=>setsodium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Potassium" variant="filled" 
-          value={potassium}
-                  onChange={(event)=>setpotassium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Fiber" variant="filled" 
-          value={fiber}
-                  onChange={(event)=>setfiber(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Sugar" variant="filled" 
-          value={sugar}
-                  onChange={(event)=>setsugar(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Calcium" variant="filled" 
-          value={calcium}
-                  onChange={(event)=>setcalcium(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Iron" variant="filled" 
-          value={iron}
-                  onChange={(event)=>setiron(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Vitamin A" variant="filled" 
-          value={vitamina}
-                  onChange={(event)=>setvitamina(event.target.value)} />
-                  <div className='form-labels'>Enter amount in IU (International Unit). Example:1516</div>
-      </div>
-      <br></br><br></br>
-      <div>
-          <TextField id="filled-basic"  className="textbox" label="Vitamin C" variant="filled" 
-          value={vitaminc}
-                  onChange={(event)=>setvitaminc(event.target.value)} />
-                  <div className='form-labels'>Enter amount in mg (milli grams). Example:3</div>
-      </div>
-      <br></br>
-      <br></br>
-      <div>
-      <Button color='secondary' variant='contained' onClick={()=>{
-
-            //adding edited one as new  receipe object to list
-            // console.log(receipelist.filter((ele,index)=>index!==editindex))
-            const list = [...receipelist.filter((ele,index)=>index!==editindex),{
-              name:name.toUpperCase(),
-              picturelink:picturelink,
-              ingredients:(ingredients.toString().trim().length>0)?ingredients.toString().split(","):["NA"],
-              receipe:(receipe.toString().trim().length>0)?receipe.toString().split("."):["NA"],
-              videolink:videolink,
-              notes:(notes.toString().trim().length>0)?notes.toString().split("."):["NA"],
-              preptime:preptime,
-              cooktime:cooktime,
-              soakingtime:soakingtime,
-              fermentationtime:fermentationtime,
-              totaltime:totaltime,
-              course:course,
-              cuisine:cuisine,
-              servings:servings,
-              calories:calories,
-              carbohydrates:carbohydrates,
-              protein:protein,
-              fat:fat,
-              sodium:sodium,
-              potassium:potassium,
-              fiber:fiber,
-              sugar:sugar,
-              calcium:calcium,
-              iron:iron,
-              vitamina:vitamina,
-              vitaminc:vitaminc
-            }];
-            // console.log(list);
-            setreceipelist([...list]);
-            // console.log(receipelist)
-
-
-
-            //after adding setting teh fields to empty values
-            setname("");
-            setpicturelink("")
-            setingredients("")
-            setreceipe("")
-            setvideolink("")
-            setnotes("")
-            setpreptime("")
-            setcooktime("")
-            setsoakingtime("")
-            setfermentationtime("")
-            settotaltime("")
-            setcourse("")
-            setcuisine("")
-            setservings("")
-            setcalories("")
-            setcarbohydrates("")
-            setprotein("")
-            setfat("")
-            setsodium("")
-            setpotassium("")
-            setfiber("")
-            setsugar("")
-            setcalcium("")
-            setiron("")
-            setvitamina("")
-            setvitaminc("")
-            }}>
-              UPDATE RECEIPE
-            </Button>
-      </div>
-      <br></br>
-      <div>
-      <Button variant='contained' color="primary" onClick={()=>setform2visible(false)}>
-          Cancel/close the form
-      </Button>
-      </div>
-    </div>
-    
-  )
-}
-
-
-
-function Receipe({name,setname,picturelink,setpicturelink,ingredients,setingredients,receipe,setreceipe,
-  videolink,setvideolink,notes,setnotes,preptime,setpreptime,cooktime,setcooktime,soakingtime,setsoakingtime,
-  fermentationtime,setfermentationtime,totaltime,settotaltime,course,setcourse
-  ,cuisine,setcuisine,servings,setservings,calories,setcalories,carbohydrates,setcarbohydrates,protein,setprotein,
-  fat,setfat,sodium,setsodium,potassium,setpotassium, fiber,setfiber,sugar,setsugar,calcium,setcalcium,
-  iron,setiron,vitamina,setvitamina,vitaminc,setvitaminc,receipelist,setreceipelist,index,
-  setform2visible,form2visible,editindex,seteditindex}) {
-
-      // console.log(name,picturelink,ingredients,receipe,videolink,notes,preptime,cooktime,soakingtime,
-      //   fermentationtime,totaltime,course,cuisine,servings,calories,carbohydrates,protein,fat,sodium,potassium,
-      //     fiber,sugar,calcium,iron,vitamina,vitaminc)
-
-
-     
-
-      //style so that data appaears only when button is clicke
-      const [visible1,setvisible1] = useState(false);
-      const [visible2,setvisible2] = useState(false);
-      const [visible3,setvisible3] = useState(false);
-      const [visible4,setvisible4] = useState(false);
-
-      //down arrow / up arrow changes when button is clicked
-      const button1 = (visible1)?<Button variant='outlined' color="secondary"  onClick={()=>setvisible1(!visible1)}><ArrowDropUpIcon/>Time Needed </Button>:<Button variant='outlined' color="secondary" onClick={()=>setvisible1(!visible1)}><ArrowDropDownIcon/>Time Needed</Button>;
-      const button2 = (visible2)?<Button variant='outlined' color="secondary"  onClick={()=>setvisible2(!visible2)}><ArrowDropUpIcon/>Nutrition </Button>:<Button variant='outlined' color="secondary" onClick={()=>setvisible2(!visible2)}><ArrowDropDownIcon/>Nutrition</Button>;
-      const button3 = (visible3)?<Button variant='outlined' color="secondary"  onClick={()=>setvisible3(!visible3)}><ArrowDropUpIcon/>Ingredients </Button>:<Button variant='outlined' color="secondary" onClick={()=>setvisible3(!visible3)}><ArrowDropDownIcon/>Ingredients</Button>;
-      const button4 = (visible4)?<Button variant='outlined' color="secondary"  onClick={()=>setvisible4(!visible4)}><ArrowDropUpIcon/>Receipe </Button>:<Button variant='outlined' color="secondary" onClick={()=>setvisible4(!visible4)}><ArrowDropDownIcon/>Receipe</Button>;
-
-      const style1=(visible1)?{display:"block"}:{display:"none"};
-      const style2=(visible2)?{display:"block"}:{display:"none"};
-      const style3=(visible3)?{display:"block"}:{display:"none"};
-      const style4=(visible4)?{display:"block"}:{display:"none"};
-
-      //display calroies only if we have a value for that
-      const calorievalue=(calories==="")?"":<Tooltip title="calories"><Chip label={calories+" KCal"} icon={<LocalFireDepartmentIcon/> }  variant="outlined" color="secondary" /></Tooltip>
-
-
-      //display NA if a value is not there
-      const preptimevalue = (preptime==="")?"NA":preptime
-      const cooktimevalue = (cooktime==="")?"NA":cooktime
-      const soakingtimevalue = (soakingtime==="")?"NA":soakingtime
-      const fermentationtimevalue = (fermentationtime==="")?"NA":fermentationtime
-      const totaltimevalue = (totaltime==="")?"NA":totaltime
-
-      const carbohydratesvalue = (carbohydrates==="")?"NA":carbohydrates+" g";
-      const proteinvalue = (protein==="")?"NA":protein+" g";
-      const fatvalue = (fat==="")?"NA":fat+" g";
-      const sodiumvalue = (sodium==="")?"NA":sodium+" mg";
-      const potassiumvalue = (potassium==="")?"NA":potassium+" mg"
-      const fibervalue = (fiber==="")?"NA":fiber+" mg";
-      const sugarvalue = (sugar==="")?"NA":sugar+" mg"
-      const calciumvalue = (calcium==="")?"NA":calcium+" mg"
-      const ironvalue = (iron==="")?"NA":iron+" mg"
-      const vitaminavalue = vitamina===""?"NA":vitamina+"IU";
-      const vitamincvalue = vitaminc===""?"NA":vitaminc+" mg";
-    
-
-          return(
-            <div className='card' >
-              {/* delete button to delete the receipes and rceipe is removed based on index value*/}
-             <Tooltip title="delete the receipe">
-             <Fab  aria-label="delete receipe "  color="secondary" size="medium"  className='Fab-button' onClick={()=>{
-                const deleteindex=index;
-                console.log(deleteindex)
-                setreceipelist(receipelist.filter((ele,ind)=>ind!=deleteindex))
-              }} >
-                  {/* <ClearIcon/> */}
-                  <RemoveIcon/>
-              </Fab>
-             </Tooltip>
-             <Tooltip title="Edit the receipe">
-             <Fab  aria-label="edit receipe " color="secondary" size="medium" style={{float:"right"}}  className='Fab-button' onClick={()=>{
-                console.log(index)
-                const {name,picturelink,ingredients,receipe,videolink,notes,preptime,cooktime,soakingtime,
-                  fermentationtime,totaltime,course,cuisine,servings,calories,carbohydrates,protein,fat,sodium,potassium,
-                    fiber,sugar,calcium,iron,vitamina,vitaminc} = receipelist[index];
-                    setform2visible(true)
-                
-                setname(name);
-                setpicturelink(picturelink)
-                setingredients(ingredients)
-                setreceipe(receipe)
-                setvideolink(videolink)
-                setpreptime(preptime)
-                setcooktime(cooktime)
-                setsoakingtime(soakingtime)
-                setfermentationtime(fermentationtime)
-                settotaltime(totaltime)
-                setcourse(course)
-                setcuisine(cuisine)
-                setservings(servings)
-                setcalories(calories)
-                setcarbohydrates(carbohydrates)
-                setprotein(protein)
-                setfat(fat)
-                setsodium(sodium)
-                setpotassium(potassium)
-                setfiber(fiber)
-                setsugar(sugar)
-                setiron(iron)
-                setvitamina(vitamina)
-                setvitaminc(vitaminc)
-                setnotes(notes)
-                setcalcium(calcium)
-                seteditindex(index)
-                
-              }} >
-                  <ModeEditOutlineOutlinedIcon/> 
-              </Fab>
-             </Tooltip>
-             
-                <div className='heading'>
-                  <h1>{name}</h1>
-                </div>
-                <div className='flex-row'>
-                  <div>
-                      <Tooltip title="course">
-                          <Chip label={course} variant="outlined" color="secondary" />
-                      </Tooltip>
-                  </div>
-                  <div>
-                      <Tooltip title="cuisine">
-                        <Chip label={cuisine} variant="outlined" color="secondary" />
-                      </Tooltip>
-                  </div>
-                  <div>
-                      <Tooltip title="servings">
-                        <Chip label={servings} icon={<LocalDiningIcon/>} variant="outlined" color="secondary" />
-                      </Tooltip>
-                  </div>
-                  <div>
-                        {calorievalue}      
-                  </div>
-                </div>
-                <br></br>
-                <div>
-                  <img src={picturelink}/>
-                  {/* <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-          <ImageList sx={{ width: 400, height: 450 }}  cols={3} gap={1}>
-       
-          <ImageListItem >
-            <img
-              src={`${picturelink}?w=248&fit=crop&auto=format`}
-              srcSet={`${picturelink}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={picturelink}
-              loading="lazy"
-            />
-          </ImageListItem>
-          <ImageListItem key={picturelink}>
-            <img
-              src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9nUoxrPMQs32vv7Dj1CytIiFiRaYPsqhqCQ&usqp=CAU?w=248&fit=crop&auto=format`}
-              srcSet={`${picturelink}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={picturelink}
-              loading="lazy"
-            />
-          </ImageListItem>
-          <ImageListItem key={picturelink}>
-            <img
-              src={`${picturelink}?w=248&fit=crop&auto=format`}
-              srcSet={`${picturelink}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={picturelink}
-              loading="lazy"
-            />
-          </ImageListItem>
-        
-      </ImageList>
-    </Box> */}
-                </div>
-                <br></br>
-                {/* <div className='flex-row'>
-                  < div className='badge'><LocalDiningIcon className='p-5'/> <span >{servings}</span></div>
-                  <div className='badge'><LocalFireDepartmentIcon className='p-5'/> <span >{calories}</span></div>
-                </div>
-                <br></br> */}
-                <div>
-                  {button1}
-                </div>
-                <div style={style1} className='snippet'>
-                  {/* <div className='heading'><h3>Time needed</h3></div>
-                  <div>Prep time:  {preptime}</div>
-                  <div>Cook time: {cooktime}</div>
-                  <div>Soaking time:  {soakingtime}</div>
-                  <div>Fermentation time: {fermentationtime}</div>
-                  <div>Total time: {totaltime}</div> */}
-                  <TableContainer component={Paper } className='table'>
-                    <Table sx={{ minWidth: 100}} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell  > Time</TableCell>
-                        <TableCell >Value</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell >Prep time</TableCell>
-                        <TableCell  >{preptimevalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Cook time</TableCell>
-                        <TableCell>{cooktimevalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Soaking time</TableCell>
-                        <TableCell>{soakingtimevalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Fermentation time</TableCell>
-                        <TableCell>{fermentationtimevalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total time</TableCell>
-                        <TableCell>{totaltimevalue}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                    </Table>
-                  </TableContainer>
-                </div>
-
-                <div>
-                  {button2}
-                </div>
-                <div style={style2} className='snippet'>
-                  {/* <div className='heading'><h3>Nutrients</h3></div>
-                  <div>Carbohydrates: {carbohydrates}</div>
-                  <div>Protein: {protein}</div>
-                  <div>Fat: {fat}</div>
-                  <div>Sodium: {sodium}</div>
-                  <div>Potassium: {potassium}</div>
-                  <div>Fiiber: {fiber}</div>
-                  <div>Sugar: {sugar}</div>
-                  <div>Calcium: {calcium}</div>
-                  <div>Iron: {iron}</div>
-                  <div>Vitamin A :{vitamina}</div>
-                  <div>Vitamin C :{vitaminc}</div> */}
-                  <TableContainer component={Paper } className='table'>
-                    <Table sx={{ minWidth: 100}} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell  > Nutrient</TableCell>
-                        <TableCell >Value</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell >Carbohydrates</TableCell>
-                        <TableCell  >{carbohydratesvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Protein</TableCell>
-                        <TableCell>{proteinvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Fat</TableCell>
-                        <TableCell>{fatvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Sodium</TableCell>
-                        <TableCell>{sodiumvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Potassium</TableCell>
-                        <TableCell>{potassiumvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Fiber</TableCell>
-                        <TableCell>{fibervalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Sugar</TableCell>
-                        <TableCell>{sugarvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Calcium</TableCell>
-                        <TableCell>{calciumvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Iron</TableCell>
-                        <TableCell>{ironvalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Vitamin A</TableCell>
-                        <TableCell>{vitaminavalue}</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Vitamin C</TableCell>
-                        <TableCell>{vitamincvalue}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                    </Table>
-                  </TableContainer>
-                </div>
-                <div>
-                  {button3}
-                </div>
-                <div style={style3} className='snippet'>
-                  {/* <div className='heading'><h3>Ingredients</h3></div> */}
-                  <ul>
-                      {
-                        
-                       <Ingredients ingredients={ingredients}/>
-                      }
-                  </ul>
-                </div>
-                <div>
-                    {button4}
-                </div>
-                <div style={style4} className='snippet'>
-                  {/* <div className='heading'><h3>Receipe</h3></div> */}
-                  <ul>
-                    {/* as we perform split with "." for final sentence there is a final element which is " " */}
-                    {  
-                       <Receipedisplay receipe={receipe}/>
-                      }
-                  </ul>
-                </div>
-            </div>
-          )
-
-}
-function Ingredients({ingredients}){
-  return (
-    <div>
-      {
-        ingredients.map((ele)=><Steps content={ele}/>)
-      }
-    </div>
-  )
-}
-function Receipedisplay({receipe}){
-  return (
-    <div>
-      {
-        receipe.map((ele)=><Steps content={ele}/>)
-      }
-    </div>
-  )
-}
-
-function Steps({content}) {
-  return(
-   <li>{content}</li>
-  )
-}
 
